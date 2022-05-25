@@ -1,6 +1,10 @@
-package agh.edu.pl.device;
+package pl.edu.agh.device;
 
-import SmartHome.*;
+import SmartHome.InvalidTemperature;
+import SmartHome.InvalidTime;
+import SmartHome.Oven;
+import SmartHome.Time;
+import SmartHome.Modes;
 import com.zeroc.Ice.Current;
 
 public class MyOven extends MyDevice implements Oven {
@@ -48,6 +52,7 @@ public class MyOven extends MyDevice implements Oven {
     public Time getTime(Current current) {
         return null;
     }
+
 
     @Override
     public void setTime(Time time, Current current) throws InvalidTime {

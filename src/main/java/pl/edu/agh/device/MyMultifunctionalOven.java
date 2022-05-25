@@ -1,4 +1,4 @@
-package agh.edu.pl.device;
+package pl.edu.agh.device;
 
 import SmartHome.MultifunctionalOven;
 import com.zeroc.Ice.Current;
