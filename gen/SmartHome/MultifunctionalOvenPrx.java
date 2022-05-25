@@ -15,7 +15,7 @@
 
 package SmartHome;
 
-public interface MultifuntionalOvenPrx extends OvenPrx
+public interface MultifunctionalOvenPrx extends OvenPrx
 {
     default short getTemperatureInsideOven()
     {
@@ -97,9 +97,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @param obj The untyped proxy.
      * @return A proxy for this type, or null if the object does not support this type.
      **/
-    static MultifuntionalOvenPrx checkedCast(com.zeroc.Ice.ObjectPrx obj)
+    static MultifunctionalOvenPrx checkedCast(com.zeroc.Ice.ObjectPrx obj)
     {
-        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, ice_staticId(), MultifuntionalOvenPrx.class, _MultifuntionalOvenPrxI.class);
+        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, ice_staticId(), MultifunctionalOvenPrx.class, _MultifunctionalOvenPrxI.class);
     }
 
     /**
@@ -109,9 +109,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @param context The Context map to send with the invocation.
      * @return A proxy for this type, or null if the object does not support this type.
      **/
-    static MultifuntionalOvenPrx checkedCast(com.zeroc.Ice.ObjectPrx obj, java.util.Map<String, String> context)
+    static MultifunctionalOvenPrx checkedCast(com.zeroc.Ice.ObjectPrx obj, java.util.Map<String, String> context)
     {
-        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, context, ice_staticId(), MultifuntionalOvenPrx.class, _MultifuntionalOvenPrxI.class);
+        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, context, ice_staticId(), MultifunctionalOvenPrx.class, _MultifunctionalOvenPrxI.class);
     }
 
     /**
@@ -121,9 +121,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @param facet The name of the desired facet.
      * @return A proxy for this type, or null if the object does not support this type.
      **/
-    static MultifuntionalOvenPrx checkedCast(com.zeroc.Ice.ObjectPrx obj, String facet)
+    static MultifunctionalOvenPrx checkedCast(com.zeroc.Ice.ObjectPrx obj, String facet)
     {
-        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, facet, ice_staticId(), MultifuntionalOvenPrx.class, _MultifuntionalOvenPrxI.class);
+        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, facet, ice_staticId(), MultifunctionalOvenPrx.class, _MultifunctionalOvenPrxI.class);
     }
 
     /**
@@ -134,9 +134,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @param context The Context map to send with the invocation.
      * @return A proxy for this type, or null if the object does not support this type.
      **/
-    static MultifuntionalOvenPrx checkedCast(com.zeroc.Ice.ObjectPrx obj, String facet, java.util.Map<String, String> context)
+    static MultifunctionalOvenPrx checkedCast(com.zeroc.Ice.ObjectPrx obj, String facet, java.util.Map<String, String> context)
     {
-        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, facet, context, ice_staticId(), MultifuntionalOvenPrx.class, _MultifuntionalOvenPrxI.class);
+        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, facet, context, ice_staticId(), MultifunctionalOvenPrx.class, _MultifunctionalOvenPrxI.class);
     }
 
     /**
@@ -144,9 +144,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @param obj The untyped proxy.
      * @return A proxy for this type.
      **/
-    static MultifuntionalOvenPrx uncheckedCast(com.zeroc.Ice.ObjectPrx obj)
+    static MultifunctionalOvenPrx uncheckedCast(com.zeroc.Ice.ObjectPrx obj)
     {
-        return com.zeroc.Ice.ObjectPrx._uncheckedCast(obj, MultifuntionalOvenPrx.class, _MultifuntionalOvenPrxI.class);
+        return com.zeroc.Ice.ObjectPrx._uncheckedCast(obj, MultifunctionalOvenPrx.class, _MultifunctionalOvenPrxI.class);
     }
 
     /**
@@ -155,9 +155,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @param facet The name of the desired facet.
      * @return A proxy for this type.
      **/
-    static MultifuntionalOvenPrx uncheckedCast(com.zeroc.Ice.ObjectPrx obj, String facet)
+    static MultifunctionalOvenPrx uncheckedCast(com.zeroc.Ice.ObjectPrx obj, String facet)
     {
-        return com.zeroc.Ice.ObjectPrx._uncheckedCast(obj, facet, MultifuntionalOvenPrx.class, _MultifuntionalOvenPrxI.class);
+        return com.zeroc.Ice.ObjectPrx._uncheckedCast(obj, facet, MultifunctionalOvenPrx.class, _MultifunctionalOvenPrxI.class);
     }
 
     /**
@@ -166,9 +166,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy with the specified per-proxy context.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_context(java.util.Map<String, String> newContext)
+    default MultifunctionalOvenPrx ice_context(java.util.Map<String, String> newContext)
     {
-        return (MultifuntionalOvenPrx)_ice_context(newContext);
+        return (MultifunctionalOvenPrx)_ice_context(newContext);
     }
 
     /**
@@ -177,9 +177,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy with the specified adapter ID.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_adapterId(String newAdapterId)
+    default MultifunctionalOvenPrx ice_adapterId(String newAdapterId)
     {
-        return (MultifuntionalOvenPrx)_ice_adapterId(newAdapterId);
+        return (MultifunctionalOvenPrx)_ice_adapterId(newAdapterId);
     }
 
     /**
@@ -188,9 +188,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy with the specified endpoints.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_endpoints(com.zeroc.Ice.Endpoint[] newEndpoints)
+    default MultifunctionalOvenPrx ice_endpoints(com.zeroc.Ice.Endpoint[] newEndpoints)
     {
-        return (MultifuntionalOvenPrx)_ice_endpoints(newEndpoints);
+        return (MultifunctionalOvenPrx)_ice_endpoints(newEndpoints);
     }
 
     /**
@@ -199,9 +199,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy with the specified locator cache timeout.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_locatorCacheTimeout(int newTimeout)
+    default MultifunctionalOvenPrx ice_locatorCacheTimeout(int newTimeout)
     {
-        return (MultifuntionalOvenPrx)_ice_locatorCacheTimeout(newTimeout);
+        return (MultifunctionalOvenPrx)_ice_locatorCacheTimeout(newTimeout);
     }
 
     /**
@@ -210,9 +210,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy with the specified invocation timeout.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_invocationTimeout(int newTimeout)
+    default MultifunctionalOvenPrx ice_invocationTimeout(int newTimeout)
     {
-        return (MultifuntionalOvenPrx)_ice_invocationTimeout(newTimeout);
+        return (MultifunctionalOvenPrx)_ice_invocationTimeout(newTimeout);
     }
 
     /**
@@ -221,9 +221,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy with the specified caching policy.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_connectionCached(boolean newCache)
+    default MultifunctionalOvenPrx ice_connectionCached(boolean newCache)
     {
-        return (MultifuntionalOvenPrx)_ice_connectionCached(newCache);
+        return (MultifunctionalOvenPrx)_ice_connectionCached(newCache);
     }
 
     /**
@@ -232,9 +232,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy with the specified endpoint selection policy.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_endpointSelection(com.zeroc.Ice.EndpointSelectionType newType)
+    default MultifunctionalOvenPrx ice_endpointSelection(com.zeroc.Ice.EndpointSelectionType newType)
     {
-        return (MultifuntionalOvenPrx)_ice_endpointSelection(newType);
+        return (MultifunctionalOvenPrx)_ice_endpointSelection(newType);
     }
 
     /**
@@ -245,9 +245,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy with the specified selection policy.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_secure(boolean b)
+    default MultifunctionalOvenPrx ice_secure(boolean b)
     {
-        return (MultifuntionalOvenPrx)_ice_secure(b);
+        return (MultifunctionalOvenPrx)_ice_secure(b);
     }
 
     /**
@@ -256,9 +256,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy with the specified encoding version.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_encodingVersion(com.zeroc.Ice.EncodingVersion e)
+    default MultifunctionalOvenPrx ice_encodingVersion(com.zeroc.Ice.EncodingVersion e)
     {
-        return (MultifuntionalOvenPrx)_ice_encodingVersion(e);
+        return (MultifunctionalOvenPrx)_ice_encodingVersion(e);
     }
 
     /**
@@ -269,9 +269,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy with the specified selection policy.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_preferSecure(boolean b)
+    default MultifunctionalOvenPrx ice_preferSecure(boolean b)
     {
-        return (MultifuntionalOvenPrx)_ice_preferSecure(b);
+        return (MultifunctionalOvenPrx)_ice_preferSecure(b);
     }
 
     /**
@@ -280,9 +280,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy with the specified router.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_router(com.zeroc.Ice.RouterPrx router)
+    default MultifunctionalOvenPrx ice_router(com.zeroc.Ice.RouterPrx router)
     {
-        return (MultifuntionalOvenPrx)_ice_router(router);
+        return (MultifunctionalOvenPrx)_ice_router(router);
     }
 
     /**
@@ -291,9 +291,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy with the specified locator.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_locator(com.zeroc.Ice.LocatorPrx locator)
+    default MultifunctionalOvenPrx ice_locator(com.zeroc.Ice.LocatorPrx locator)
     {
-        return (MultifuntionalOvenPrx)_ice_locator(locator);
+        return (MultifunctionalOvenPrx)_ice_locator(locator);
     }
 
     /**
@@ -302,9 +302,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy with the specified collocation optimization.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_collocationOptimized(boolean b)
+    default MultifunctionalOvenPrx ice_collocationOptimized(boolean b)
     {
-        return (MultifuntionalOvenPrx)_ice_collocationOptimized(b);
+        return (MultifunctionalOvenPrx)_ice_collocationOptimized(b);
     }
 
     /**
@@ -312,9 +312,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy that uses twoway invocations.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_twoway()
+    default MultifunctionalOvenPrx ice_twoway()
     {
-        return (MultifuntionalOvenPrx)_ice_twoway();
+        return (MultifunctionalOvenPrx)_ice_twoway();
     }
 
     /**
@@ -322,9 +322,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy that uses oneway invocations.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_oneway()
+    default MultifunctionalOvenPrx ice_oneway()
     {
-        return (MultifuntionalOvenPrx)_ice_oneway();
+        return (MultifunctionalOvenPrx)_ice_oneway();
     }
 
     /**
@@ -332,9 +332,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy that uses batch oneway invocations.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_batchOneway()
+    default MultifunctionalOvenPrx ice_batchOneway()
     {
-        return (MultifuntionalOvenPrx)_ice_batchOneway();
+        return (MultifunctionalOvenPrx)_ice_batchOneway();
     }
 
     /**
@@ -342,9 +342,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy that uses datagram invocations.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_datagram()
+    default MultifunctionalOvenPrx ice_datagram()
     {
-        return (MultifuntionalOvenPrx)_ice_datagram();
+        return (MultifunctionalOvenPrx)_ice_datagram();
     }
 
     /**
@@ -352,9 +352,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy that uses batch datagram invocations.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_batchDatagram()
+    default MultifunctionalOvenPrx ice_batchDatagram()
     {
-        return (MultifuntionalOvenPrx)_ice_batchDatagram();
+        return (MultifunctionalOvenPrx)_ice_batchDatagram();
     }
 
     /**
@@ -363,9 +363,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy with the specified compression setting.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_compress(boolean co)
+    default MultifunctionalOvenPrx ice_compress(boolean co)
     {
-        return (MultifuntionalOvenPrx)_ice_compress(co);
+        return (MultifunctionalOvenPrx)_ice_compress(co);
     }
 
     /**
@@ -374,9 +374,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy with the specified timeout.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_timeout(int t)
+    default MultifunctionalOvenPrx ice_timeout(int t)
     {
-        return (MultifuntionalOvenPrx)_ice_timeout(t);
+        return (MultifunctionalOvenPrx)_ice_timeout(t);
     }
 
     /**
@@ -385,9 +385,9 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A proxy with the specified connection ID.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_connectionId(String connectionId)
+    default MultifunctionalOvenPrx ice_connectionId(String connectionId)
     {
-        return (MultifuntionalOvenPrx)_ice_connectionId(connectionId);
+        return (MultifunctionalOvenPrx)_ice_connectionId(connectionId);
     }
 
     /**
@@ -396,13 +396,13 @@ public interface MultifuntionalOvenPrx extends OvenPrx
      * @return A fixed proxy bound to the given connection.
      **/
     @Override
-    default MultifuntionalOvenPrx ice_fixed(com.zeroc.Ice.Connection connection)
+    default MultifunctionalOvenPrx ice_fixed(com.zeroc.Ice.Connection connection)
     {
-        return (MultifuntionalOvenPrx)_ice_fixed(connection);
+        return (MultifunctionalOvenPrx)_ice_fixed(connection);
     }
 
     static String ice_staticId()
     {
-        return "::SmartHome::MultifuntionalOven";
+        return "::SmartHome::MultifunctionalOven";
     }
 }

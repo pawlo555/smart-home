@@ -16,7 +16,7 @@
 package SmartHome;
 
 /** @hidden */
-public class _MultifuntionalOvenPrxI extends com.zeroc.Ice._ObjectPrxI implements MultifuntionalOvenPrx
+public class _MultifunctionalOvenPrxI extends com.zeroc.Ice._ObjectPrxI implements MultifunctionalOvenPrx
 {
     /** @hidden */
     public static final long serialVersionUID = 0L;

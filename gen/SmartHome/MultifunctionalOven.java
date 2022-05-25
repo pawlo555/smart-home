@@ -15,7 +15,7 @@
 
 package SmartHome;
 
-public interface MultifuntionalOven extends Oven
+public interface MultifunctionalOven extends Oven
 {
     short getTemperatureInsideOven(com.zeroc.Ice.Current current);
 
@@ -26,7 +26,7 @@ public interface MultifuntionalOven extends Oven
     {
         "::Ice::Object",
         "::SmartHome::Device",
-        "::SmartHome::MultifuntionalOven",
+        "::SmartHome::MultifunctionalOven",
         "::SmartHome::Oven",
         "::SmartHome::Timer"
     };
@@ -45,7 +45,7 @@ public interface MultifuntionalOven extends Oven
 
     static String ice_staticId()
     {
-        return "::SmartHome::MultifuntionalOven";
+        return "::SmartHome::MultifunctionalOven";
     }
 
     /**
@@ -55,7 +55,7 @@ public interface MultifuntionalOven extends Oven
      * @param current -
      * @return -
     **/
-    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_getTemperatureInsideOven(MultifuntionalOven obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_getTemperatureInsideOven(MultifunctionalOven obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
     {
         com.zeroc.Ice.Object._iceCheckMode(com.zeroc.Ice.OperationMode.Idempotent, current.mode);
         inS.readEmptyParams();
@@ -73,7 +73,7 @@ public interface MultifuntionalOven extends Oven
      * @param current -
      * @return -
     **/
-    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_getHumidityInsideOven(MultifuntionalOven obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_getHumidityInsideOven(MultifunctionalOven obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
     {
         com.zeroc.Ice.Object._iceCheckMode(com.zeroc.Ice.OperationMode.Idempotent, current.mode);
         inS.readEmptyParams();

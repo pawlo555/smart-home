@@ -60,7 +60,7 @@ module SmartHome
         idempotent ModesSequence getSupportedModes();
     };
 
-    interface MultifuntionalOven extends Oven
+    interface MultifunctionalOven extends Oven
     {
         idempotent short getTemperatureInsideOven();
         idempotent short getHumidityInsideOven();
