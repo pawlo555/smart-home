@@ -74,18 +74,41 @@ public class Client
                 LightBulbPrx lightBulbPrx = LightBulbPrx.checkedCast(proxy);
                 lightBulbPrx.turnLightOff();
             }
+            case GET_MAX_TEMPERATURE -> {
+                OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
+                return ovenPrx.getMaxTemperature();
+            }
+            case GET_MIN_TEMPERATURE -> {
+                OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
+                return ovenPrx.getMinTemperature();
+            }
+            case GET_CURRENT_TEMPERATURE -> {
+                OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
+                return ovenPrx.getCurrentTemperature();
+            }
         }
         return null;
     }
 
-    public Object command(String name, Commands command, Object[] params) throws InvalidPhotoSize {
+    public Object command(String name, Commands command, Object[] params) {
         DevicePrx proxy = identitiesMap.get(name);
-        switch (command) {
-            case SET_PHOTO_SIZE -> {
-                PhotoSize newPhotoSize = (PhotoSize) params[0];
-                CameraPrx cameraPrx = CameraPrx.checkedCast(proxy);
-                cameraPrx.setPhotoSize(newPhotoSize);
+        try {
+            switch (command) {
+                case SET_PHOTO_SIZE -> {
+                    PhotoSize newPhotoSize = (PhotoSize) params[0];
+                    CameraPrx cameraPrx = CameraPrx.checkedCast(proxy);
+                    cameraPrx.setPhotoSize(newPhotoSize);
+                }
+                case SET_TEMPERATURE -> {
+                    short newTemperature = (short) params[0];
+                    System.out.println(newTemperature);
+                    OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
+                    ovenPrx.setTemperature(newTemperature);
+                }
             }
+        }
+        catch (InvalidTemperature | InvalidPhotoSize exception) {
+            return exception;
         }
         return null;
     }

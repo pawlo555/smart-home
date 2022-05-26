@@ -12,11 +12,11 @@ import pl.edu.agh.device.MyDevice;
 
 import java.util.List;
 
-import static junit.framework.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 
 public class CameraTest {
-
-
     @Test()
     public void turnOnCameraTest() {
         String[] serverArgs = new String[]{"--Ice.Config=config.server"};
@@ -51,7 +51,7 @@ public class CameraTest {
             client.command("Camera1", Commands.TURN_ON);
             short[] photoBytes = (short[]) client.command("Camera1", Commands.GET_PHOTO);
 
-            assertEquals(MyCamera.BASIC_PHOTO__SIZE_X*MyCamera.BASIC_PHOTO_SIZE_Y, photoBytes.length);
+            assertEquals(MyCamera.BASIC_PHOTO_SIZE_X *MyCamera.BASIC_PHOTO_SIZE_Y, photoBytes.length);
         }
         finally {
             client.destroyClient();
@@ -79,8 +79,8 @@ public class CameraTest {
         }
     }
 
-    @Test(expected = InvalidPhotoSize.class)
-    public void changePhotoSizeToInvalidValueTest() throws InvalidPhotoSize {
+    @Test()
+    public void changePhotoSizeToInvalidValueTest() {
         String[] serverArgs = new String[]{"--Ice.Config=config.server"};
         String[] customerArgs = new String[]{"--Ice.Config=config.client"};
         List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();
@@ -91,7 +91,9 @@ public class CameraTest {
             client.start();
 
             client.command("Camera1", Commands.TURN_ON);
-            client.command("Camera1", Commands.SET_PHOTO_SIZE, new PhotoSize[]{new PhotoSize((short)40, (short)-1)});
+            InvalidPhotoSize invalidPhotoSizeException = (InvalidPhotoSize) client.command("Camera1", Commands.SET_PHOTO_SIZE, new PhotoSize[]{new PhotoSize((short)40, (short)-1)});
+            assertEquals(40, invalidPhotoSizeException.invalidPhotoSize.x);
+            assertEquals(-1, invalidPhotoSizeException.invalidPhotoSize.y);
         }
         finally {
             client.destroyClient();
@@ -100,7 +102,7 @@ public class CameraTest {
     }
 
     @Test()
-    public void changeSizePhotoTest() throws InvalidPhotoSize {
+    public void changeSizePhotoTest() {
         String[] serverArgs = new String[]{"--Ice.Config=config.server"};
         String[] customerArgs = new String[]{"--Ice.Config=config.client"};
         List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();

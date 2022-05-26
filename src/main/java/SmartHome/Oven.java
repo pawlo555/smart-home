@@ -24,7 +24,7 @@ public interface Oven extends Device,
 
     short getCurrentTemperature(com.zeroc.Ice.Current current);
 
-    short setCurrentTemperature(com.zeroc.Ice.Current current)
+    void setTemperature(short newTemperature, com.zeroc.Ice.Current current)
         throws InvalidTemperature;
 
     Modes[] getSupportedModes(com.zeroc.Ice.Current current);
@@ -117,16 +117,16 @@ public interface Oven extends Device,
      * @return -
      * @throws com.zeroc.Ice.UserException -
     **/
-    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_setCurrentTemperature(Oven obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_setTemperature(Oven obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
         throws com.zeroc.Ice.UserException
     {
         com.zeroc.Ice.Object._iceCheckMode(com.zeroc.Ice.OperationMode.Idempotent, current.mode);
-        inS.readEmptyParams();
-        short ret = obj.setCurrentTemperature(current);
-        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
-        ostr.writeShort(ret);
-        inS.endWriteParams(ostr);
-        return inS.setResult(ostr);
+        com.zeroc.Ice.InputStream istr = inS.startReadParams();
+        short iceP_newTemperature;
+        iceP_newTemperature = istr.readShort();
+        inS.endReadParams();
+        obj.setTemperature(iceP_newTemperature, current);
+        return inS.setResult(inS.writeEmptyParams());
     }
 
     /**
@@ -162,7 +162,7 @@ public interface Oven extends Device,
         "isFinish",
         "isTurnedOn",
         "resetTimer",
-        "setCurrentTemperature",
+        "setTemperature",
         "setTime",
         "setTo",
         "start",
@@ -232,7 +232,7 @@ public interface Oven extends Device,
             }
             case 12:
             {
-                return _iceD_setCurrentTemperature(this, in, current);
+                return _iceD_setTemperature(this, in, current);
             }
             case 13:
             {

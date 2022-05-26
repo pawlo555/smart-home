@@ -129,18 +129,18 @@ public interface OvenPrx extends DevicePrx,
         return f;
     }
 
-    default short setCurrentTemperature()
+    default void setTemperature(short newTemperature)
         throws InvalidTemperature
     {
-        return setCurrentTemperature(com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        setTemperature(newTemperature, com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default short setCurrentTemperature(java.util.Map<String, String> context)
+    default void setTemperature(short newTemperature, java.util.Map<String, String> context)
         throws InvalidTemperature
     {
         try
         {
-            return _iceI_setCurrentTemperatureAsync(context, true).waitForResponseOrUserEx();
+            _iceI_setTemperatureAsync(newTemperature, context, true).waitForResponseOrUserEx();
         }
         catch(InvalidTemperature ex)
         {
@@ -152,35 +152,34 @@ public interface OvenPrx extends DevicePrx,
         }
     }
 
-    default java.util.concurrent.CompletableFuture<java.lang.Short> setCurrentTemperatureAsync()
+    default java.util.concurrent.CompletableFuture<Void> setTemperatureAsync(short newTemperature)
     {
-        return _iceI_setCurrentTemperatureAsync(com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+        return _iceI_setTemperatureAsync(newTemperature, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<java.lang.Short> setCurrentTemperatureAsync(java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<Void> setTemperatureAsync(short newTemperature, java.util.Map<String, String> context)
     {
-        return _iceI_setCurrentTemperatureAsync(context, false);
+        return _iceI_setTemperatureAsync(newTemperature, context, false);
     }
 
     /**
      * @hidden
+     * @param iceP_newTemperature -
      * @param context -
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<java.lang.Short> _iceI_setCurrentTemperatureAsync(java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_setTemperatureAsync(short iceP_newTemperature, java.util.Map<String, String> context, boolean sync)
     {
-        com.zeroc.IceInternal.OutgoingAsync<java.lang.Short> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "setCurrentTemperature", com.zeroc.Ice.OperationMode.Idempotent, sync, _iceE_setCurrentTemperature);
-        f.invoke(true, context, null, null, istr -> {
-                     short ret;
-                     ret = istr.readShort();
-                     return ret;
-                 });
+        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "setTemperature", com.zeroc.Ice.OperationMode.Idempotent, sync, _iceE_setTemperature);
+        f.invoke(true, context, null, ostr -> {
+                     ostr.writeShort(iceP_newTemperature);
+                 }, null);
         return f;
     }
 
     /** @hidden */
-    static final Class<?>[] _iceE_setCurrentTemperature =
+    static final Class<?>[] _iceE_setTemperature =
     {
         InvalidTemperature.class
     };

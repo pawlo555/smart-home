@@ -19,13 +19,13 @@ public class UnsupportedMode extends com.zeroc.Ice.UserException
 {
     public UnsupportedMode()
     {
-        this.unsupportedMode = Modes.LOW;
+        this.unsupportedMode = Modes.ConventionalOvenCooking;
     }
 
     public UnsupportedMode(Throwable cause)
     {
         super(cause);
-        this.unsupportedMode = Modes.LOW;
+        this.unsupportedMode = Modes.ConventionalOvenCooking;
     }
 
     public UnsupportedMode(Modes[] supportedModes, Modes unsupportedMode)

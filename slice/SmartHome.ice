@@ -32,8 +32,21 @@ module SmartHome
         idempotent void isFinish();
     };
 
-
-    enum Modes { LOW, DEFROST, MED, MEDIUMHEIGH, HIGH };
+    enum Modes
+    {
+        ConventionalOvenCooking,
+        FanForced,
+        FanForcedGrill,
+        Grill,
+        TurboGrill,
+        Defrost,
+        Warmer,
+        ECO,
+        Pyrolytic,
+        PizzaMode,
+        FishCooking,
+        BreadProving
+    };
 
     sequence<Modes> ModesSequence;
 
@@ -55,7 +68,7 @@ module SmartHome
         idempotent short getMaxTemperature();
         idempotent short getMinTemperature();
         idempotent short getCurrentTemperature();
-        idempotent short setCurrentTemperature() throws InvalidTemperature;
+        idempotent void setTemperature(short newTemperature) throws InvalidTemperature;
 
         idempotent ModesSequence getSupportedModes();
     };

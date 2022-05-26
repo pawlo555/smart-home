@@ -4,13 +4,15 @@ import SmartHome.MultifunctionalOven;
 import com.zeroc.Ice.Current;
 
 public class MyMultifunctionalOven extends MyOven implements MultifunctionalOven {
+    // TODO
     @Override
     public short getTemperatureInsideOven(Current current) {
-        return 0;
+        return (short) (getCurrentTemperature(current) - 5);
     }
 
+    // TODO
     @Override
     public short getHumidityInsideOven(Current current) {
-        return 0;
+        return 50;
     }
 }

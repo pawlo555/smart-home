@@ -6,12 +6,12 @@ import SmartHome.PhotoSize;
 import com.zeroc.Ice.Current;
 
 public class MyCamera extends MyDevice implements Camera {
-    public final static short BASIC_PHOTO__SIZE_X = 8;
+    public final static short BASIC_PHOTO_SIZE_X = 8;
     public final static short BASIC_PHOTO_SIZE_Y = 13;
     private final PhotoSize minPhotoSize = new PhotoSize((short) 1, (short)1);
     private final PhotoSize maxPhotoSize = new PhotoSize((short) 100, (short) 100);
 
-    private PhotoSize photoSize = new PhotoSize(BASIC_PHOTO__SIZE_X, BASIC_PHOTO_SIZE_Y);
+    private PhotoSize photoSize = new PhotoSize(BASIC_PHOTO_SIZE_X, BASIC_PHOTO_SIZE_Y);
 
     @Override
     public PhotoSize getPhotoSize(Current current) {

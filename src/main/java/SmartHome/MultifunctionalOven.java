@@ -101,7 +101,7 @@ public interface MultifunctionalOven extends Oven
         "isFinish",
         "isTurnedOn",
         "resetTimer",
-        "setCurrentTemperature",
+        "setTemperature",
         "setTime",
         "setTo",
         "start",
@@ -179,7 +179,7 @@ public interface MultifunctionalOven extends Oven
             }
             case 14:
             {
-                return Oven._iceD_setCurrentTemperature(this, in, current);
+                return Oven._iceD_setTemperature(this, in, current);
             }
             case 15:
             {

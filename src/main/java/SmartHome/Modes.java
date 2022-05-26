@@ -17,11 +17,18 @@ package SmartHome;
 
 public enum Modes implements java.io.Serializable
 {
-    LOW(0),
-    DEFROST(1),
-    MED(2),
-    MEDIUMHEIGH(3),
-    HIGH(4);
+    ConventionalOvenCooking(0),
+    FanForced(1),
+    FanForcedGrill(2),
+    Grill(3),
+    TurboGrill(4),
+    Defrost(5),
+    Warmer(6),
+    ECO(7),
+    Pyrolytic(8),
+    PizzaMode(9),
+    FishCooking(10),
+    BreadProving(11);
 
     public int value()
     {
@@ -33,15 +40,29 @@ public enum Modes implements java.io.Serializable
         switch(v)
         {
         case 0:
-            return LOW;
+            return ConventionalOvenCooking;
         case 1:
-            return DEFROST;
+            return FanForced;
         case 2:
-            return MED;
+            return FanForcedGrill;
         case 3:
-            return MEDIUMHEIGH;
+            return Grill;
         case 4:
-            return HIGH;
+            return TurboGrill;
+        case 5:
+            return Defrost;
+        case 6:
+            return Warmer;
+        case 7:
+            return ECO;
+        case 8:
+            return Pyrolytic;
+        case 9:
+            return PizzaMode;
+        case 10:
+            return FishCooking;
+        case 11:
+            return BreadProving;
         }
         return null;
     }
@@ -53,24 +74,24 @@ public enum Modes implements java.io.Serializable
 
     public void ice_write(com.zeroc.Ice.OutputStream ostr)
     {
-        ostr.writeEnum(_value, 4);
+        ostr.writeEnum(_value, 11);
     }
 
     public static void ice_write(com.zeroc.Ice.OutputStream ostr, Modes v)
     {
         if(v == null)
         {
-            ostr.writeEnum(SmartHome.Modes.LOW.value(), 4);
+            ostr.writeEnum(SmartHome.Modes.ConventionalOvenCooking.value(), 11);
         }
         else
         {
-            ostr.writeEnum(v.value(), 4);
+            ostr.writeEnum(v.value(), 11);
         }
     }
 
     public static Modes ice_read(com.zeroc.Ice.InputStream istr)
     {
-        int v = istr.readEnum(4);
+        int v = istr.readEnum(11);
         return validate(v);
     }
 
