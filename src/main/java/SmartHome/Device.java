@@ -19,9 +19,7 @@ public interface Device extends com.zeroc.Ice.Object
 {
     boolean isTurnedOn(com.zeroc.Ice.Current current);
 
-    boolean setTo(PowerState state, com.zeroc.Ice.Current current);
-
-    String getName(com.zeroc.Ice.Current current);
+    void setTo(PowerState state, com.zeroc.Ice.Current current);
 
     /** @hidden */
     static final String[] _iceIds =
@@ -79,35 +77,13 @@ public interface Device extends com.zeroc.Ice.Object
         PowerState iceP_state;
         iceP_state = PowerState.ice_read(istr);
         inS.endReadParams();
-        boolean ret = obj.setTo(iceP_state, current);
-        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
-        ostr.writeBool(ret);
-        inS.endWriteParams(ostr);
-        return inS.setResult(ostr);
-    }
-
-    /**
-     * @hidden
-     * @param obj -
-     * @param inS -
-     * @param current -
-     * @return -
-    **/
-    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_getName(Device obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
-    {
-        com.zeroc.Ice.Object._iceCheckMode(com.zeroc.Ice.OperationMode.Idempotent, current.mode);
-        inS.readEmptyParams();
-        String ret = obj.getName(current);
-        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
-        ostr.writeString(ret);
-        inS.endWriteParams(ostr);
-        return inS.setResult(ostr);
+        obj.setTo(iceP_state, current);
+        return inS.setResult(inS.writeEmptyParams());
     }
 
     /** @hidden */
     final static String[] _iceOps =
     {
-        "getName",
         "ice_id",
         "ice_ids",
         "ice_isA",
@@ -131,29 +107,25 @@ public interface Device extends com.zeroc.Ice.Object
         {
             case 0:
             {
-                return _iceD_getName(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
             }
             case 1:
             {
-                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
             }
             case 2:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
             }
             case 3:
             {
-                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
             }
             case 4:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
-            }
-            case 5:
-            {
                 return _iceD_isTurnedOn(this, in, current);
             }
-            case 6:
+            case 5:
             {
                 return _iceD_setTo(this, in, current);
             }

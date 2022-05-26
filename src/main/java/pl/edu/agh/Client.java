@@ -6,7 +6,7 @@ import com.zeroc.Ice.*;
 import javafx.util.Pair;
 import pl.edu.agh.device.MyDevice;
 
-import java.lang.Exception;
+import java.lang.Object;
 import java.util.HashMap;
 import java.util.List;
 
@@ -47,5 +47,22 @@ public class Client
         return identitiesMap.get(name).isTurnedOn();
     }
 
+    public Object command(String name, Commands command) {
+        DevicePrx proxy = identitiesMap.get(name);
 
+        switch(command) {
+            case TURN_ON -> {
+                proxy.setTo(PowerState.ON);
+                return null;
+            }
+            case TURN_OFF -> {
+                proxy.setTo(PowerState.OFF);
+                return null;
+            }
+            case CHECK_POWER -> {
+                return proxy.isTurnedOn();
+            }
+        }
+        return null;
+    }
 }

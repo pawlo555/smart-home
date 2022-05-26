@@ -19,11 +19,24 @@ public class InvalidTime extends com.zeroc.Ice.UserException
 {
     public InvalidTime()
     {
+        this.time = new Time();
     }
 
     public InvalidTime(Throwable cause)
     {
         super(cause);
+        this.time = new Time();
+    }
+
+    public InvalidTime(Time time)
+    {
+        this.time = time;
+    }
+
+    public InvalidTime(Time time, Throwable cause)
+    {
+        super(cause);
+        this.time = time;
     }
 
     public String ice_id()
@@ -31,11 +44,14 @@ public class InvalidTime extends com.zeroc.Ice.UserException
         return "::SmartHome::InvalidTime";
     }
 
+    public Time time;
+
     /** @hidden */
     @Override
     protected void _writeImpl(com.zeroc.Ice.OutputStream ostr_)
     {
         ostr_.startSlice("::SmartHome::InvalidTime", -1, true);
+        Time.ice_write(ostr_, time);
         ostr_.endSlice();
     }
 
@@ -44,9 +60,10 @@ public class InvalidTime extends com.zeroc.Ice.UserException
     protected void _readImpl(com.zeroc.Ice.InputStream istr_)
     {
         istr_.startSlice();
+        time = Time.ice_read(istr_);
         istr_.endSlice();
     }
 
     /** @hidden */
-    public static final long serialVersionUID = -576953067L;
+    public static final long serialVersionUID = -1691351637L;
 }

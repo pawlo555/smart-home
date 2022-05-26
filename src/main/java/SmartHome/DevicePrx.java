@@ -54,22 +54,22 @@ public interface DevicePrx extends com.zeroc.Ice.ObjectPrx
         return f;
     }
 
-    default boolean setTo(PowerState state)
+    default void setTo(PowerState state)
     {
-        return setTo(state, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        setTo(state, com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default boolean setTo(PowerState state, java.util.Map<String, String> context)
+    default void setTo(PowerState state, java.util.Map<String, String> context)
     {
-        return _iceI_setToAsync(state, context, true).waitForResponse();
+        _iceI_setToAsync(state, context, true).waitForResponse();
     }
 
-    default java.util.concurrent.CompletableFuture<java.lang.Boolean> setToAsync(PowerState state)
+    default java.util.concurrent.CompletableFuture<Void> setToAsync(PowerState state)
     {
         return _iceI_setToAsync(state, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<java.lang.Boolean> setToAsync(PowerState state, java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<Void> setToAsync(PowerState state, java.util.Map<String, String> context)
     {
         return _iceI_setToAsync(state, context, false);
     }
@@ -81,53 +81,12 @@ public interface DevicePrx extends com.zeroc.Ice.ObjectPrx
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> _iceI_setToAsync(PowerState iceP_state, java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_setToAsync(PowerState iceP_state, java.util.Map<String, String> context, boolean sync)
     {
-        com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "setTo", com.zeroc.Ice.OperationMode.Idempotent, sync, null);
-        f.invoke(true, context, null, ostr -> {
+        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "setTo", com.zeroc.Ice.OperationMode.Idempotent, sync, null);
+        f.invoke(false, context, null, ostr -> {
                      PowerState.ice_write(ostr, iceP_state);
-                 }, istr -> {
-                     boolean ret;
-                     ret = istr.readBool();
-                     return ret;
-                 });
-        return f;
-    }
-
-    default String getName()
-    {
-        return getName(com.zeroc.Ice.ObjectPrx.noExplicitContext);
-    }
-
-    default String getName(java.util.Map<String, String> context)
-    {
-        return _iceI_getNameAsync(context, true).waitForResponse();
-    }
-
-    default java.util.concurrent.CompletableFuture<java.lang.String> getNameAsync()
-    {
-        return _iceI_getNameAsync(com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
-    }
-
-    default java.util.concurrent.CompletableFuture<java.lang.String> getNameAsync(java.util.Map<String, String> context)
-    {
-        return _iceI_getNameAsync(context, false);
-    }
-
-    /**
-     * @hidden
-     * @param context -
-     * @param sync -
-     * @return -
-     **/
-    default com.zeroc.IceInternal.OutgoingAsync<java.lang.String> _iceI_getNameAsync(java.util.Map<String, String> context, boolean sync)
-    {
-        com.zeroc.IceInternal.OutgoingAsync<java.lang.String> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "getName", com.zeroc.Ice.OperationMode.Idempotent, sync, null);
-        f.invoke(true, context, null, null, istr -> {
-                     String ret;
-                     ret = istr.readString();
-                     return ret;
-                 });
+                 }, null);
         return f;
     }
 

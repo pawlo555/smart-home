@@ -99,7 +99,6 @@ public interface LightBulb extends Device
     /** @hidden */
     final static String[] _iceOps =
     {
-        "getName",
         "ice_id",
         "ice_ids",
         "ice_isA",
@@ -126,41 +125,37 @@ public interface LightBulb extends Device
         {
             case 0:
             {
-                return Device._iceD_getName(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
             }
             case 1:
             {
-                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
             }
             case 2:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
             }
             case 3:
             {
-                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
             }
             case 4:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
+                return _iceD_isLighting(this, in, current);
             }
             case 5:
             {
-                return _iceD_isLighting(this, in, current);
+                return Device._iceD_isTurnedOn(this, in, current);
             }
             case 6:
             {
-                return Device._iceD_isTurnedOn(this, in, current);
+                return Device._iceD_setTo(this, in, current);
             }
             case 7:
             {
-                return Device._iceD_setTo(this, in, current);
-            }
-            case 8:
-            {
                 return _iceD_turnLightOff(this, in, current);
             }
-            case 9:
+            case 8:
             {
                 return _iceD_turnLightOn(this, in, current);
             }

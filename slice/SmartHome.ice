@@ -8,9 +8,7 @@ module SmartHome
     interface Device
     {
         idempotent bool isTurnedOn();
-        idempotent bool setTo(PowerState state);
-
-        idempotent string getName();
+        idempotent void setTo(PowerState state);
     };
 
     struct Time
@@ -20,7 +18,9 @@ module SmartHome
         short hours;
     };
 
-    exception InvalidTime {};
+    exception InvalidTime {
+        Time time;
+    };
 
     interface Timer
     {

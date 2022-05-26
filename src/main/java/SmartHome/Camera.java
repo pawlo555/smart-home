@@ -105,7 +105,6 @@ public interface Camera extends Device
     /** @hidden */
     final static String[] _iceOps =
     {
-        "getName",
         "getPhoto",
         "getPhotoSize",
         "ice_id",
@@ -132,41 +131,37 @@ public interface Camera extends Device
         {
             case 0:
             {
-                return Device._iceD_getName(this, in, current);
+                return _iceD_getPhoto(this, in, current);
             }
             case 1:
             {
-                return _iceD_getPhoto(this, in, current);
+                return _iceD_getPhotoSize(this, in, current);
             }
             case 2:
             {
-                return _iceD_getPhotoSize(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
             }
             case 3:
             {
-                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
             }
             case 4:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
             }
             case 5:
             {
-                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
             }
             case 6:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
+                return Device._iceD_isTurnedOn(this, in, current);
             }
             case 7:
             {
-                return Device._iceD_isTurnedOn(this, in, current);
-            }
-            case 8:
-            {
                 return _iceD_setPhotoSize(this, in, current);
             }
-            case 9:
+            case 8:
             {
                 return Device._iceD_setTo(this, in, current);
             }
