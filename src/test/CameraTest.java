@@ -38,7 +38,7 @@ public class CameraTest {
     }
 
     @Test()
-    public void getDefaultPhoto() {
+    public void getDefaultPhotoTest() {
         String[] serverArgs = new String[]{"--Ice.Config=config.server"};
         String[] customerArgs = new String[]{"--Ice.Config=config.client"};
         List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();
@@ -60,7 +60,7 @@ public class CameraTest {
     }
 
     @Test()
-    public void getPhotoOnOffCamera() {
+    public void getPhotoOnOffCameraTest() {
         String[] serverArgs = new String[]{"--Ice.Config=config.server"};
         String[] customerArgs = new String[]{"--Ice.Config=config.client"};
         List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();
@@ -80,7 +80,7 @@ public class CameraTest {
     }
 
     @Test(expected = InvalidPhotoSize.class)
-    public void changePhotoSizeToInvalidValue() throws InvalidPhotoSize {
+    public void changePhotoSizeToInvalidValueTest() throws InvalidPhotoSize {
         String[] serverArgs = new String[]{"--Ice.Config=config.server"};
         String[] customerArgs = new String[]{"--Ice.Config=config.client"};
         List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();
@@ -100,7 +100,7 @@ public class CameraTest {
     }
 
     @Test()
-    public void changeSizePhoto() throws InvalidPhotoSize {
+    public void changeSizePhotoTest() throws InvalidPhotoSize {
         String[] serverArgs = new String[]{"--Ice.Config=config.server"};
         String[] customerArgs = new String[]{"--Ice.Config=config.client"};
         List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ConnectionTest {
     @Test()
-    public void testConnection() {
+    public void connectionTest() {
         String[] serverArgs = new String[]{"--Ice.Config=config.server"};
         String[] customerArgs = new String[]{"--Ice.Config=config.client"};
         List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();

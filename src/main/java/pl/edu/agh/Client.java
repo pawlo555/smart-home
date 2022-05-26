@@ -43,22 +43,14 @@ public class Client
     }
 
     public Object command(String name) {
-        System.out.println(identitiesMap);
         return identitiesMap.get(name).isTurnedOn();
     }
 
     public Object command(String name, Commands command) {
         DevicePrx proxy = identitiesMap.get(name);
-
         switch(command) {
-            case TURN_ON -> {
-                proxy.setTo(PowerState.ON);
-                return null;
-            }
-            case TURN_OFF -> {
-                proxy.setTo(PowerState.OFF);
-                return null;
-            }
+            case TURN_ON -> proxy.setTo(PowerState.ON);
+            case TURN_OFF -> proxy.setTo(PowerState.OFF);
             case CHECK_POWER -> {
                 return proxy.isTurnedOn();
             }
@@ -69,6 +61,18 @@ public class Client
             case GET_PHOTO_SIZE -> {
                 CameraPrx cameraPrx = CameraPrx.checkedCast(proxy);
                 return cameraPrx.getPhotoSize();
+            }
+            case IS_LIGHT_ON -> {
+                LightBulbPrx lightBulbPrx = LightBulbPrx.checkedCast(proxy);
+                return lightBulbPrx.isLighting();
+            }
+            case TURN_LIGHT_ON -> {
+                LightBulbPrx lightBulbPrx = LightBulbPrx.checkedCast(proxy);
+                lightBulbPrx.turnLightOn();
+            }
+            case TURN_LIGHT_OFF -> {
+                LightBulbPrx lightBulbPrx = LightBulbPrx.checkedCast(proxy);
+                lightBulbPrx.turnLightOff();
             }
         }
         return null;
@@ -81,7 +85,6 @@ public class Client
                 PhotoSize newPhotoSize = (PhotoSize) params[0];
                 CameraPrx cameraPrx = CameraPrx.checkedCast(proxy);
                 cameraPrx.setPhotoSize(newPhotoSize);
-                return null;
             }
         }
         return null;
