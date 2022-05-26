@@ -42,7 +42,7 @@ public class Client
         }
     }
 
-    public boolean command(String name) {
+    public Object command(String name) {
         System.out.println(identitiesMap);
         return identitiesMap.get(name).isTurnedOn();
     }
@@ -61,6 +61,27 @@ public class Client
             }
             case CHECK_POWER -> {
                 return proxy.isTurnedOn();
+            }
+            case GET_PHOTO -> {
+                CameraPrx cameraPrx = CameraPrx.checkedCast(proxy);
+                return cameraPrx.getPhoto();
+            }
+            case GET_PHOTO_SIZE -> {
+                CameraPrx cameraPrx = CameraPrx.checkedCast(proxy);
+                return cameraPrx.getPhotoSize();
+            }
+        }
+        return null;
+    }
+
+    public Object command(String name, Commands command, Object[] params) throws InvalidPhotoSize {
+        DevicePrx proxy = identitiesMap.get(name);
+        switch (command) {
+            case SET_PHOTO_SIZE -> {
+                PhotoSize newPhotoSize = (PhotoSize) params[0];
+                CameraPrx cameraPrx = CameraPrx.checkedCast(proxy);
+                cameraPrx.setPhotoSize(newPhotoSize);
+                return null;
             }
         }
         return null;

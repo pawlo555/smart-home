@@ -91,7 +91,7 @@ module SmartHome
     interface Camera extends Device
     {
         idempotent PhotoSize getPhotoSize();
-        idempotent void setPhotoSize(PhotoSize photoSize);
+        idempotent void setPhotoSize(PhotoSize photoSize) throws InvalidPhotoSize;
 
         idempotent PhotoBytes  getPhoto();
     };

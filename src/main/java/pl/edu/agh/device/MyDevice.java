@@ -5,10 +5,11 @@ import SmartHome.PowerState;
 import com.zeroc.Ice.Current;
 
 public class MyDevice implements Device {
-    private PowerState state;
+    private PowerState state = PowerState.OFF;
 
     @Override
     public boolean isTurnedOn(Current current) {
+        System.out.println(state.toString());
         return state == PowerState.ON;
     }
 

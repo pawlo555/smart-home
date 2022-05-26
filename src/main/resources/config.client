@@ -3,6 +3,11 @@
 # "hello" object in the server.
 #
 Device1.Proxy=devices/Device1 : tcp -h 127.0.0.2 -p 10000 -z : udp -h 127.0.0.2 -p 10000 -z
+Camera1.Proxy=cameras/Camera1 : tcp -h 127.0.0.2 -p 10000 -z : udp -h 127.0.0.2 -p 10000 -z
+LightBulb1.Proxy=lightbulbs/LightBulb1 : tcp -h 127.0.0.2 -p 10000 -z : udp -h 127.0.0.2 -p 10000 -z
+LightBulb2.Proxy=lightbulbs/LightBulb2 : tcp -h 127.0.0.2 -p 10000 -z : udp -h 127.0.0.2 -p 10000 -z
+Oven1.Proxy=ovens/Oven1 : tcp -h 127.0.0.2 -p 10000 -z : udp -h 127.0.0.2 -p 10000 -z
+MultifunctionalOven1.Proxy=multifunctionalOvens/MultifunctionalOven1 : tcp -h 127.0.0.2 -p 10000 -z : udp -h 127.0.0.2 -p 10000 -z
 
 #
 # Warn about connection exceptions.

@@ -19,7 +19,8 @@ public interface Camera extends Device
 {
     PhotoSize getPhotoSize(com.zeroc.Ice.Current current);
 
-    void setPhotoSize(PhotoSize photoSize, com.zeroc.Ice.Current current);
+    void setPhotoSize(PhotoSize photoSize, com.zeroc.Ice.Current current)
+        throws InvalidPhotoSize;
 
     short[] getPhoto(com.zeroc.Ice.Current current);
 
@@ -72,8 +73,10 @@ public interface Camera extends Device
      * @param inS -
      * @param current -
      * @return -
+     * @throws com.zeroc.Ice.UserException -
     **/
     static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_setPhotoSize(Camera obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+        throws com.zeroc.Ice.UserException
     {
         com.zeroc.Ice.Object._iceCheckMode(com.zeroc.Ice.OperationMode.Idempotent, current.mode);
         com.zeroc.Ice.InputStream istr = inS.startReadParams();

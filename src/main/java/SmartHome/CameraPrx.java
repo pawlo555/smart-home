@@ -55,13 +55,26 @@ public interface CameraPrx extends DevicePrx
     }
 
     default void setPhotoSize(PhotoSize photoSize)
+        throws InvalidPhotoSize
     {
         setPhotoSize(photoSize, com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
     default void setPhotoSize(PhotoSize photoSize, java.util.Map<String, String> context)
+        throws InvalidPhotoSize
     {
-        _iceI_setPhotoSizeAsync(photoSize, context, true).waitForResponse();
+        try
+        {
+            _iceI_setPhotoSizeAsync(photoSize, context, true).waitForResponseOrUserEx();
+        }
+        catch(InvalidPhotoSize ex)
+        {
+            throw ex;
+        }
+        catch(com.zeroc.Ice.UserException ex)
+        {
+            throw new com.zeroc.Ice.UnknownUserException(ex.ice_id(), ex);
+        }
     }
 
     default java.util.concurrent.CompletableFuture<Void> setPhotoSizeAsync(PhotoSize photoSize)
@@ -83,12 +96,18 @@ public interface CameraPrx extends DevicePrx
      **/
     default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_setPhotoSizeAsync(PhotoSize iceP_photoSize, java.util.Map<String, String> context, boolean sync)
     {
-        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "setPhotoSize", com.zeroc.Ice.OperationMode.Idempotent, sync, null);
-        f.invoke(false, context, null, ostr -> {
+        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "setPhotoSize", com.zeroc.Ice.OperationMode.Idempotent, sync, _iceE_setPhotoSize);
+        f.invoke(true, context, null, ostr -> {
                      PhotoSize.ice_write(ostr, iceP_photoSize);
                  }, null);
         return f;
     }
+
+    /** @hidden */
+    static final Class<?>[] _iceE_setPhotoSize =
+    {
+        InvalidPhotoSize.class
+    };
 
     default short[] getPhoto()
     {

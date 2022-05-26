@@ -3,10 +3,11 @@ import javafx.util.Pair;
 import org.junit.Test;
 import pl.edu.agh.Client;
 import pl.edu.agh.Commands;
+import pl.edu.agh.PairsGenerator;
 import pl.edu.agh.Server;
 import pl.edu.agh.device.MyDevice;
 
-import java.util.Collections;
+import java.util.List;
 
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
@@ -17,52 +18,62 @@ public class DeviceTest {
     public void testDeviceFirstTurnOff() {
         String[] serverArgs = new String[]{"--Ice.Config=config.server"};
         String[] customerArgs = new String[]{"--Ice.Config=config.client"};
-        Pair<MyDevice, Identity> pair = new Pair<>(new MyDevice(), new Identity("Device1", "devices"));
-        Server server = new Server(serverArgs, Collections.singletonList(pair));
-        server.start();
-        Client client = new Client(customerArgs, Collections.singletonList(pair));
-        client.start();
+        List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();
+        Server server = new Server(serverArgs, pairList);
+        Client client = new Client(customerArgs, pairList);
+        try {
+            server.start();
+            client.start();
 
-        assertFalse((Boolean) client.command("Device1", Commands.CHECK_POWER));
-
-        client.destroyClient();
-        server.destroyServer();
+            assertFalse((Boolean) client.command("Device1", Commands.CHECK_POWER));
+        }
+        finally{
+            client.destroyClient();
+            server.destroyServer();
+        }
     }
 
     @Test()
     public void deviceAfterTurnOnIsOn() {
         String[] serverArgs = new String[]{"--Ice.Config=config.server"};
         String[] customerArgs = new String[]{"--Ice.Config=config.client"};
-        Pair<MyDevice, Identity> pair = new Pair<>(new MyDevice(), new Identity("Device1", "devices"));
-        Server server = new Server(serverArgs, Collections.singletonList(pair));
-        server.start();
-        Client client = new Client(customerArgs, Collections.singletonList(pair));
-        client.start();
+        List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();
+        Server server = new Server(serverArgs, pairList);
+        Client client = new Client(customerArgs, pairList);
+        try {
+            server.start();
+            client.start();
 
-        client.command("Device1", Commands.TURN_ON);
-        assertTrue((Boolean) client.command("Device1", Commands.CHECK_POWER));
+            client.command("Device1", Commands.TURN_ON);
+            assertTrue((Boolean) client.command("Device1", Commands.CHECK_POWER));
+        }
+        finally {
+            client.destroyClient();
+            server.destroyServer();
+        }
 
-        client.destroyClient();
-        server.destroyServer();
     }
 
     @Test()
     public void switchingDevice() {
         String[] serverArgs = new String[]{"--Ice.Config=config.server"};
         String[] customerArgs = new String[]{"--Ice.Config=config.client"};
-        Pair<MyDevice, Identity> pair = new Pair<>(new MyDevice(), new Identity("Device1", "devices"));
-        Server server = new Server(serverArgs, Collections.singletonList(pair));
-        server.start();
-        Client client = new Client(customerArgs, Collections.singletonList(pair));
-        client.start();
+        List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();
+        Server server = new Server(serverArgs, pairList);
+        Client client = new Client(customerArgs, pairList);
+        try {
+            server.start();
+            client.start();
 
-        client.command("Device1", Commands.TURN_ON);
-        client.command("Device1", Commands.TURN_OFF);
-        client.command("Device1", Commands.TURN_OFF);
-        assertFalse((Boolean) client.command("Device1", Commands.CHECK_POWER));
-
-        client.destroyClient();
-        server.destroyServer();
+            client.command("Device1", Commands.TURN_ON);
+            client.command("Device1", Commands.TURN_OFF);
+            client.command("Device1", Commands.TURN_OFF);
+            assertFalse((Boolean) client.command("Device1", Commands.CHECK_POWER));
+        }
+        finally {
+            client.destroyClient();
+            server.destroyServer();
+        }
     }
 
 }
