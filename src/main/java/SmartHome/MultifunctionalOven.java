@@ -87,6 +87,7 @@ public interface MultifunctionalOven extends Oven
     /** @hidden */
     final static String[] _iceOps =
     {
+        "getCurrentMode",
         "getCurrentTemperature",
         "getHumidityInsideOven",
         "getMaxTemperature",
@@ -101,6 +102,7 @@ public interface MultifunctionalOven extends Oven
         "isFinish",
         "isTurnedOn",
         "resetTimer",
+        "setMode",
         "setTemperature",
         "setTime",
         "setTo",
@@ -123,77 +125,85 @@ public interface MultifunctionalOven extends Oven
         {
             case 0:
             {
-                return Oven._iceD_getCurrentTemperature(this, in, current);
+                return Oven._iceD_getCurrentMode(this, in, current);
             }
             case 1:
             {
-                return _iceD_getHumidityInsideOven(this, in, current);
+                return Oven._iceD_getCurrentTemperature(this, in, current);
             }
             case 2:
             {
-                return Oven._iceD_getMaxTemperature(this, in, current);
+                return _iceD_getHumidityInsideOven(this, in, current);
             }
             case 3:
             {
-                return Oven._iceD_getMinTemperature(this, in, current);
+                return Oven._iceD_getMaxTemperature(this, in, current);
             }
             case 4:
             {
-                return Oven._iceD_getSupportedModes(this, in, current);
+                return Oven._iceD_getMinTemperature(this, in, current);
             }
             case 5:
             {
-                return _iceD_getTemperatureInsideOven(this, in, current);
+                return Oven._iceD_getSupportedModes(this, in, current);
             }
             case 6:
             {
-                return Timer._iceD_getTime(this, in, current);
+                return _iceD_getTemperatureInsideOven(this, in, current);
             }
             case 7:
             {
-                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
+                return Timer._iceD_getTime(this, in, current);
             }
             case 8:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
             }
             case 9:
             {
-                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
             }
             case 10:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
             }
             case 11:
             {
-                return Timer._iceD_isFinish(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
             }
             case 12:
             {
-                return Device._iceD_isTurnedOn(this, in, current);
+                return Timer._iceD_isFinish(this, in, current);
             }
             case 13:
             {
-                return Timer._iceD_resetTimer(this, in, current);
+                return Device._iceD_isTurnedOn(this, in, current);
             }
             case 14:
             {
-                return Oven._iceD_setTemperature(this, in, current);
+                return Timer._iceD_resetTimer(this, in, current);
             }
             case 15:
             {
-                return Timer._iceD_setTime(this, in, current);
+                return Oven._iceD_setMode(this, in, current);
             }
             case 16:
             {
-                return Device._iceD_setTo(this, in, current);
+                return Oven._iceD_setTemperature(this, in, current);
             }
             case 17:
             {
-                return Timer._iceD_start(this, in, current);
+                return Timer._iceD_setTime(this, in, current);
             }
             case 18:
+            {
+                return Device._iceD_setTo(this, in, current);
+            }
+            case 19:
+            {
+                return Timer._iceD_start(this, in, current);
+            }
+            case 20:
             {
                 return Timer._iceD_stop(this, in, current);
             }

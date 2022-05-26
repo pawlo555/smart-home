@@ -1,17 +1,19 @@
 package pl.edu.agh.device;
 
-import SmartHome.InvalidTemperature;
-import SmartHome.InvalidTime;
-import SmartHome.Oven;
-import SmartHome.Time;
-import SmartHome.Modes;
+import SmartHome.*;
 import com.zeroc.Ice.Current;
+
+import java.util.Arrays;
 
 public class MyOven extends MyDevice implements Oven {
     public final static short MAX_TEMPERATURE = 230;
     public final static short MIN_TEMPERATURE = 20;
 
     private short currentTemperature = MIN_TEMPERATURE;
+
+    private final Modes[] supportedModes = new Modes[] {Modes.ConventionalOvenCooking, Modes.Grill, Modes.Warmer, Modes.ECO,
+            Modes.Defrost };
+    private Modes currentMode = supportedModes[0];
 
     @Override
     public short getMaxTemperature(Current current) {
@@ -42,10 +44,28 @@ public class MyOven extends MyDevice implements Oven {
         return newTemperature > MIN_TEMPERATURE && newTemperature < MAX_TEMPERATURE;
     }
 
-    // TODO
     @Override
     public Modes[] getSupportedModes(Current current) {
-        return new Modes[0];
+        return supportedModes;
+    }
+
+    @Override
+    public Modes getCurrentMode(Current current) {
+        return currentMode;
+    }
+
+    @Override
+    public void setMode(Modes mode, Current current) throws UnsupportedMode {
+        if (isModeSupported(mode)) {
+            currentMode = mode;
+        }
+        else {
+            throw new UnsupportedMode(supportedModes, mode);
+        }
+    }
+
+    private boolean isModeSupported(Modes mode) {
+        return Arrays.stream(supportedModes).anyMatch(modes1 -> modes1 == mode);
     }
 
     // TODO

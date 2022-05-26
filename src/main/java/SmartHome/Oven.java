@@ -29,6 +29,11 @@ public interface Oven extends Device,
 
     Modes[] getSupportedModes(com.zeroc.Ice.Current current);
 
+    Modes getCurrentMode(com.zeroc.Ice.Current current);
+
+    void setMode(Modes mode, com.zeroc.Ice.Current current)
+        throws UnsupportedMode;
+
     /** @hidden */
     static final String[] _iceIds =
     {
@@ -147,9 +152,48 @@ public interface Oven extends Device,
         return inS.setResult(ostr);
     }
 
+    /**
+     * @hidden
+     * @param obj -
+     * @param inS -
+     * @param current -
+     * @return -
+    **/
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_getCurrentMode(Oven obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    {
+        com.zeroc.Ice.Object._iceCheckMode(com.zeroc.Ice.OperationMode.Idempotent, current.mode);
+        inS.readEmptyParams();
+        Modes ret = obj.getCurrentMode(current);
+        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
+        Modes.ice_write(ostr, ret);
+        inS.endWriteParams(ostr);
+        return inS.setResult(ostr);
+    }
+
+    /**
+     * @hidden
+     * @param obj -
+     * @param inS -
+     * @param current -
+     * @return -
+     * @throws com.zeroc.Ice.UserException -
+    **/
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_setMode(Oven obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+        throws com.zeroc.Ice.UserException
+    {
+        com.zeroc.Ice.Object._iceCheckMode(com.zeroc.Ice.OperationMode.Idempotent, current.mode);
+        com.zeroc.Ice.InputStream istr = inS.startReadParams();
+        Modes iceP_mode;
+        iceP_mode = Modes.ice_read(istr);
+        inS.endReadParams();
+        obj.setMode(iceP_mode, current);
+        return inS.setResult(inS.writeEmptyParams());
+    }
+
     /** @hidden */
     final static String[] _iceOps =
     {
+        "getCurrentMode",
         "getCurrentTemperature",
         "getMaxTemperature",
         "getMinTemperature",
@@ -162,6 +206,7 @@ public interface Oven extends Device,
         "isFinish",
         "isTurnedOn",
         "resetTimer",
+        "setMode",
         "setTemperature",
         "setTime",
         "setTo",
@@ -184,69 +229,77 @@ public interface Oven extends Device,
         {
             case 0:
             {
-                return _iceD_getCurrentTemperature(this, in, current);
+                return _iceD_getCurrentMode(this, in, current);
             }
             case 1:
             {
-                return _iceD_getMaxTemperature(this, in, current);
+                return _iceD_getCurrentTemperature(this, in, current);
             }
             case 2:
             {
-                return _iceD_getMinTemperature(this, in, current);
+                return _iceD_getMaxTemperature(this, in, current);
             }
             case 3:
             {
-                return _iceD_getSupportedModes(this, in, current);
+                return _iceD_getMinTemperature(this, in, current);
             }
             case 4:
             {
-                return Timer._iceD_getTime(this, in, current);
+                return _iceD_getSupportedModes(this, in, current);
             }
             case 5:
             {
-                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
+                return Timer._iceD_getTime(this, in, current);
             }
             case 6:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
             }
             case 7:
             {
-                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
             }
             case 8:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
             }
             case 9:
             {
-                return Timer._iceD_isFinish(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
             }
             case 10:
             {
-                return Device._iceD_isTurnedOn(this, in, current);
+                return Timer._iceD_isFinish(this, in, current);
             }
             case 11:
             {
-                return Timer._iceD_resetTimer(this, in, current);
+                return Device._iceD_isTurnedOn(this, in, current);
             }
             case 12:
             {
-                return _iceD_setTemperature(this, in, current);
+                return Timer._iceD_resetTimer(this, in, current);
             }
             case 13:
             {
-                return Timer._iceD_setTime(this, in, current);
+                return _iceD_setMode(this, in, current);
             }
             case 14:
             {
-                return Device._iceD_setTo(this, in, current);
+                return _iceD_setTemperature(this, in, current);
             }
             case 15:
             {
-                return Timer._iceD_start(this, in, current);
+                return Timer._iceD_setTime(this, in, current);
             }
             case 16:
+            {
+                return Device._iceD_setTo(this, in, current);
+            }
+            case 17:
+            {
+                return Timer._iceD_start(this, in, current);
+            }
+            case 18:
             {
                 return Timer._iceD_stop(this, in, current);
             }

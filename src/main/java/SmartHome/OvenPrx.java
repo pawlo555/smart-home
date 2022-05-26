@@ -221,6 +221,98 @@ public interface OvenPrx extends DevicePrx,
         return f;
     }
 
+    default Modes getCurrentMode()
+    {
+        return getCurrentMode(com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default Modes getCurrentMode(java.util.Map<String, String> context)
+    {
+        return _iceI_getCurrentModeAsync(context, true).waitForResponse();
+    }
+
+    default java.util.concurrent.CompletableFuture<Modes> getCurrentModeAsync()
+    {
+        return _iceI_getCurrentModeAsync(com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<Modes> getCurrentModeAsync(java.util.Map<String, String> context)
+    {
+        return _iceI_getCurrentModeAsync(context, false);
+    }
+
+    /**
+     * @hidden
+     * @param context -
+     * @param sync -
+     * @return -
+     **/
+    default com.zeroc.IceInternal.OutgoingAsync<Modes> _iceI_getCurrentModeAsync(java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<Modes> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "getCurrentMode", com.zeroc.Ice.OperationMode.Idempotent, sync, null);
+        f.invoke(true, context, null, null, istr -> {
+                     Modes ret;
+                     ret = Modes.ice_read(istr);
+                     return ret;
+                 });
+        return f;
+    }
+
+    default void setMode(Modes mode)
+        throws UnsupportedMode
+    {
+        setMode(mode, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default void setMode(Modes mode, java.util.Map<String, String> context)
+        throws UnsupportedMode
+    {
+        try
+        {
+            _iceI_setModeAsync(mode, context, true).waitForResponseOrUserEx();
+        }
+        catch(UnsupportedMode ex)
+        {
+            throw ex;
+        }
+        catch(com.zeroc.Ice.UserException ex)
+        {
+            throw new com.zeroc.Ice.UnknownUserException(ex.ice_id(), ex);
+        }
+    }
+
+    default java.util.concurrent.CompletableFuture<Void> setModeAsync(Modes mode)
+    {
+        return _iceI_setModeAsync(mode, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<Void> setModeAsync(Modes mode, java.util.Map<String, String> context)
+    {
+        return _iceI_setModeAsync(mode, context, false);
+    }
+
+    /**
+     * @hidden
+     * @param iceP_mode -
+     * @param context -
+     * @param sync -
+     * @return -
+     **/
+    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_setModeAsync(Modes iceP_mode, java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "setMode", com.zeroc.Ice.OperationMode.Idempotent, sync, _iceE_setMode);
+        f.invoke(true, context, null, ostr -> {
+                     Modes.ice_write(ostr, iceP_mode);
+                 }, null);
+        return f;
+    }
+
+    /** @hidden */
+    static final Class<?>[] _iceE_setMode =
+    {
+        UnsupportedMode.class
+    };
+
     /**
      * Contacts the remote server to verify that the object implements this type.
      * Raises a local exception if a communication error occurs.

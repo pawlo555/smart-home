@@ -71,6 +71,8 @@ module SmartHome
         idempotent void setTemperature(short newTemperature) throws InvalidTemperature;
 
         idempotent ModesSequence getSupportedModes();
+        idempotent Modes getCurrentMode();
+        idempotent void setMode(Modes mode) throws UnsupportedMode;
     };
 
     interface MultifunctionalOven extends Oven

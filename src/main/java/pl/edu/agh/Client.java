@@ -86,6 +86,14 @@ public class Client
                 OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
                 return ovenPrx.getCurrentTemperature();
             }
+            case GET_CURRENT_MODE -> {
+                OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
+                return ovenPrx.getCurrentMode();
+            }
+            case GET_SUPPORTED_MODES -> {
+                OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
+                return ovenPrx.getSupportedModes();
+            }
         }
         return null;
     }
@@ -101,13 +109,17 @@ public class Client
                 }
                 case SET_TEMPERATURE -> {
                     short newTemperature = (short) params[0];
-                    System.out.println(newTemperature);
                     OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
                     ovenPrx.setTemperature(newTemperature);
                 }
+                case SET_MODE -> {
+                    Modes mode = (Modes) params[0];
+                    OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
+                    ovenPrx.setMode(mode);
+                }
             }
         }
-        catch (InvalidTemperature | InvalidPhotoSize exception) {
+        catch (InvalidTemperature | InvalidPhotoSize | UnsupportedMode exception) {
             return exception;
         }
         return null;
