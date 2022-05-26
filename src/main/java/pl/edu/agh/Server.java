@@ -4,57 +4,42 @@ import com.zeroc.Ice.Communicator;
 import com.zeroc.Ice.Identity;
 import com.zeroc.Ice.ObjectAdapter;
 import com.zeroc.Ice.Util;
+import javafx.util.Pair;
 import pl.edu.agh.device.MyDevice;
 
+import java.util.List;
+
 public class Server {
-    public void t1(String[] args)
-    {
-        int status = 0;
-        Communicator communicator = null;
+    private Communicator communicator = null;
+    private final String[] args;
+    private final List<Pair<MyDevice, Identity>> servantsIdentitiesPair;
 
-        try	{
-            // 1. Inicjalizacja ICE - utworzenie communicatora
-            communicator = Util.initialize(args);
-            ObjectAdapter adapter = communicator.createObjectAdapterWithEndpoints("Adapter1", "tcp -h 127.0.0.2 -p 10000 -z : udp -h 127.0.0.2 -p 10000 -z");
-
-            // 3. Stworzenie serwanta/serwantów
-            MyDevice calcServant1 = new MyDevice();
-
-            adapter.add(calcServant1, new Identity("device11", "device"));
-            //adapter.add(calcServant2, new Identity("calc22", "calc"));
-            //adapter.add(calcServant3, calc33);
-
-            // 5. Aktywacja adaptera i wejście w pętlę przetwarzania żądań
-            adapter.activate();
-
-            System.out.println("Entering event processing loop...");
-
-            communicator.waitForShutdown();
-
-        }
-        catch (Exception e) {
-            System.err.println(e);
-            status = 1;
-        }
-        if (communicator != null) {
-            try {
-                communicator.destroy();
-            }
-            catch (Exception e) {
-                System.err.println(e);
-                status = 1;
-            }
-        }
-        System.exit(status);
+    public Server(String[] args, List<Pair<MyDevice, Identity>> servantsIdentitiesPair) {
+        this.args = args;
+        this.servantsIdentitiesPair = servantsIdentitiesPair;
     }
 
     public void start() {
+        communicator = Util.initialize(args);
+        ObjectAdapter adapter = communicator.createObjectAdapter("Adapter");
+        adapter.activate();
+    }
 
+    public void addDevices(ObjectAdapter adapter) {
+        for (Pair<MyDevice, Identity> pair: servantsIdentitiesPair) {
+            adapter.add(pair.getKey(), pair.getValue());
+        }
+    }
+
+    public void destroyServer() {
+        if (communicator != null) {
+            communicator.destroy();
+        }
     }
 
     public static void main(String[] args)
     {
-        Server app = new Server();
-        app.t1(args);
+        //Server app = new Server();
+        //app.t1(args);
     }
 }

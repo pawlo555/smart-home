@@ -2,13 +2,20 @@ package pl.edu.agh;
 
 import SmartHome.*;
 
-import com.zeroc.Ice.Communicator;
-import com.zeroc.Ice.Util;
-import com.zeroc.Ice.ObjectPrx;
-import com.zeroc.Ice.LocalException;
+import com.zeroc.Ice.*;
+import javafx.util.Pair;
+import pl.edu.agh.device.MyDevice;
+
+import java.lang.Exception;
+import java.util.List;
 
 public class Client
 {
+
+    public Client(String[] args, List<Pair<MyDevice, Identity>> servantsIdentityPair) {
+
+    }
+
     public static void main(String[] args)
     {
         int status = 0;
