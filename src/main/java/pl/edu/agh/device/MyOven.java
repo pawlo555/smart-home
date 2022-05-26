@@ -11,9 +11,13 @@ public class MyOven extends MyDevice implements Oven {
 
     private short currentTemperature = MIN_TEMPERATURE;
 
-    private final Modes[] supportedModes = new Modes[] {Modes.ConventionalOvenCooking, Modes.Grill, Modes.Warmer, Modes.ECO,
-            Modes.Defrost };
+    private final Modes[] supportedModes = new Modes[] {Modes.ConventionalOvenCooking, Modes.Grill, Modes.Warmer,
+            Modes.ECO, Modes.Defrost };
     private Modes currentMode = supportedModes[0];
+
+    private long timeMillis = 0;
+    private int timeSet = 0;
+    private boolean timeWorking = false;
 
     @Override
     public short getMaxTemperature(Current current) {
@@ -68,39 +72,68 @@ public class MyOven extends MyDevice implements Oven {
         return Arrays.stream(supportedModes).anyMatch(modes1 -> modes1 == mode);
     }
 
-    // TODO
     @Override
     public void start(Current current) {
-
+        if (isTurnedOn(current)) {
+            timeWorking = true;
+        }
     }
 
-    // TODO
     @Override
     public void stop(Current current) {
-
+        if (isTurnedOn(current)) {
+            updateTime();
+            timeWorking = false;
+        }
     }
 
-    // TODO
     @Override
     public void resetTimer(Current current) {
-
+        if (isTurnedOn(current)) {
+            timeWorking = false;
+            timeSet = 0;
+        }
     }
 
-    // TODO
     @Override
     public Time getTime(Current current) {
-        return null;
+        if (isTurnedOn(current)) {
+            updateTime();
+        }
+        return new Time((short)(timeSet%60), (short)((timeSet/60)%60), (short)(timeSet/3600));
     }
 
-    // TODO
     @Override
     public void setTime(Time time, Current current) throws InvalidTime {
-
+        if(!timeIsValid(time)) {
+            throw new InvalidTime();
+        }
+        if (isTurnedOn(current)) {
+            updateTime();
+            timeSet = time.hours * 3600 + time.minutes * 60 + time.seconds;
+        }
     }
 
-    // TODO
-    @Override
-    public void isFinish(Current current) {
+    private boolean timeIsValid(Time time) {
+        System.out.println(time.minutes);
+        return time.seconds >= 0 && time.minutes >= 0 && time.hours >=0 && time.seconds < 60 && time.minutes < 60;
+    }
 
+    @Override
+    public boolean isFinish(Current current) {
+        if (isTurnedOn(current)) {
+            updateTime();
+            return timeSet == 0;
+        }
+        return false;
+    }
+
+    private void updateTime() {
+        if (timeWorking) {
+            long timeMillis = System.currentTimeMillis();
+            int timeDiff = (int) (timeMillis - this.timeMillis);
+            this.timeMillis = timeMillis;
+            timeSet = Math.max(0, timeSet - timeDiff);
+        }
     }
 }

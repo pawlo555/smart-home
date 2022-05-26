@@ -1,6 +1,4 @@
-import SmartHome.InvalidTemperature;
-import SmartHome.Modes;
-import SmartHome.UnsupportedMode;
+import SmartHome.*;
 import com.zeroc.Ice.Identity;
 import javafx.util.Pair;
 import org.junit.Test;
@@ -122,7 +120,7 @@ public class OvenTest {
             Modes unsupportedMode = Arrays.stream(Modes.values())
                     .filter(modes -> !isModeSupported(supportedModes, modes))
                     .findFirst()
-                    .get();
+                    .orElseThrow();
             UnsupportedMode unsupportedModeException = (UnsupportedMode) client
                     .command("Oven1", Commands.SET_MODE, new Object[] {unsupportedMode});
             assertNotNull(unsupportedModeException);
@@ -159,5 +157,125 @@ public class OvenTest {
             client.destroyClient();
             server.destroyServer();
         }
+    }
+
+    @Test
+    public void setInvalidTimeTest() {
+        String[] serverArgs = new String[]{"--Ice.Config=config.server"};
+        String[] customerArgs = new String[]{"--Ice.Config=config.client"};
+        List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();
+        Server server = new Server(serverArgs, pairList);
+        Client client = new Client(customerArgs, pairList);
+        try {
+            server.start();
+            client.start();
+
+            client.command("Oven1", Commands.TURN_ON);
+            Time time = new Time((short)3, (short)65, (short)2);
+            InvalidTime invalidTimeException = (InvalidTime) client.command("Oven1", Commands.SET_TIME, new Object[] {time});
+            assertNotNull(invalidTimeException);
+        }
+        finally {
+            client.destroyClient();
+            server.destroyServer();
+        }
+    }
+
+    @Test
+    public void onOffDeviceTest() {
+        String[] serverArgs = new String[]{"--Ice.Config=config.server"};
+        String[] customerArgs = new String[]{"--Ice.Config=config.client"};
+        List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();
+        Server server = new Server(serverArgs, pairList);
+        Client client = new Client(customerArgs, pairList);
+        try {
+            server.start();
+            client.start();
+
+            Time time = new Time((short)3, (short)59, (short)0);
+            client.command("Oven1", Commands.SET_TIME, new Object[] {time});
+            client.command("Oven1", Commands.START);
+            assertFalse((boolean) client.command("Oven1", Commands.IS_FINISH));
+        }
+        finally {
+            client.destroyClient();
+            server.destroyServer();
+        }
+    }
+
+    @Test
+    public void startTimeCauseTimeRunTest() {
+        String[] serverArgs = new String[]{"--Ice.Config=config.server"};
+        String[] customerArgs = new String[]{"--Ice.Config=config.client"};
+        List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();
+        Server server = new Server(serverArgs, pairList);
+        Client client = new Client(customerArgs, pairList);
+        try {
+            server.start();
+            client.start();
+
+            client.command("Oven1", Commands.TURN_ON);
+            Time time = new Time((short)3, (short)59, (short)0);
+            client.command("Oven1", Commands.SET_TIME, new Object[] {time});
+            client.command("Oven1", Commands.START);
+            Time time2 = (Time) client.command("Oven1", Commands.GET_TIME);
+            assertTrue(timeToInt(time) > timeToInt(time2));
+        }
+        finally {
+            client.destroyClient();
+            server.destroyServer();
+        }
+    }
+
+    @Test
+    public void isFinishWhenTimeIsZeroTest() {
+        String[] serverArgs = new String[]{"--Ice.Config=config.server"};
+        String[] customerArgs = new String[]{"--Ice.Config=config.client"};
+        List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();
+        Server server = new Server(serverArgs, pairList);
+        Client client = new Client(customerArgs, pairList);
+        try {
+            server.start();
+            client.start();
+
+            client.command("Oven1", Commands.TURN_ON);
+            Time time = new Time((short)1, (short)0, (short)0);
+            client.command("Oven1", Commands.SET_TIME, new Object[] {time});
+            client.command("Oven1", Commands.START);
+            Thread.sleep(10);
+            assertTrue((boolean) client.command("Oven1", Commands.IS_FINISH));
+        } catch (InterruptedException interruptedException) {
+            interruptedException.printStackTrace();
+        } finally {
+            client.destroyClient();
+            server.destroyServer();
+        }
+    }
+
+    @Test
+    public void resetSetTimeToZeroTest() {
+        String[] serverArgs = new String[]{"--Ice.Config=config.server"};
+        String[] customerArgs = new String[]{"--Ice.Config=config.client"};
+        List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();
+        Server server = new Server(serverArgs, pairList);
+        Client client = new Client(customerArgs, pairList);
+        try {
+            server.start();
+            client.start();
+
+            Time time = new Time((short)1, (short)0, (short)2);
+            client.command("Oven1", Commands.TURN_ON);
+            client.command("Oven1", Commands.SET_TIME, new Object[] {time});
+            client.command("Oven1", Commands.RESET);
+            assertTrue((boolean) client.command("Oven1", Commands.IS_FINISH));
+        }
+        finally {
+            client.destroyClient();
+            server.destroyServer();
+        }
+    }
+
+    private static int timeToInt(Time time) {
+        return time.seconds + time.hours*60 + time.hours * 3600;
     }
 }

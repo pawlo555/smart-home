@@ -29,7 +29,6 @@ public class Server {
     public void addDevices(ObjectAdapter adapter) {
         for (Pair<MyDevice, Identity> pair: servantIdentityPairs) {
             adapter.add(pair.getKey(), pair.getValue());
-            System.out.println(adapter.find(pair.getValue()));
         }
     }
 

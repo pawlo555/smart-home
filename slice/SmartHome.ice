@@ -29,7 +29,7 @@ module SmartHome
         idempotent void resetTimer();
         idempotent Time getTime();
         idempotent void setTime(Time time) throws InvalidTime;
-        idempotent void isFinish();
+        idempotent bool isFinish();
     };
 
     enum Modes

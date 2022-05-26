@@ -30,7 +30,6 @@ public class Client
     public void collectObjects() {
         for (Pair<MyDevice, Identity> pair: servantIdentityPairs) {
             String key = pair.getValue().name;
-            System.out.println(pair.getValue().name + ".Proxy");
             DevicePrx proxy = DevicePrx.checkedCast(communicator.propertyToProxy(pair.getValue().name + ".Proxy"));
             identitiesMap.put(key, proxy);
         }
@@ -94,6 +93,26 @@ public class Client
                 OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
                 return ovenPrx.getSupportedModes();
             }
+            case START -> {
+                OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
+                ovenPrx.start();
+            }
+            case STOP -> {
+                OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
+                ovenPrx.stop();
+            }
+            case RESET -> {
+                OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
+                ovenPrx.resetTimer();
+            }
+            case GET_TIME -> {
+                OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
+                return ovenPrx.getTime();
+            }
+            case IS_FINISH -> {
+                OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
+                return ovenPrx.isFinish();
+            }
         }
         return null;
     }
@@ -117,9 +136,14 @@ public class Client
                     OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
                     ovenPrx.setMode(mode);
                 }
+                case SET_TIME -> {
+                    Time time = (Time) params[0];
+                    OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
+                    ovenPrx.setTime(time);
+                }
             }
         }
-        catch (InvalidTemperature | InvalidPhotoSize | UnsupportedMode exception) {
+        catch (InvalidTemperature | InvalidPhotoSize | UnsupportedMode | InvalidTime exception) {
             return exception;
         }
         return null;

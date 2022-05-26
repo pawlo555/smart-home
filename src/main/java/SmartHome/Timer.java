@@ -28,7 +28,7 @@ public interface Timer extends com.zeroc.Ice.Object
     void setTime(Time time, com.zeroc.Ice.Current current)
         throws InvalidTime;
 
-    void isFinish(com.zeroc.Ice.Current current);
+    boolean isFinish(com.zeroc.Ice.Current current);
 
     /** @hidden */
     static final String[] _iceIds =
@@ -148,8 +148,11 @@ public interface Timer extends com.zeroc.Ice.Object
     {
         com.zeroc.Ice.Object._iceCheckMode(com.zeroc.Ice.OperationMode.Idempotent, current.mode);
         inS.readEmptyParams();
-        obj.isFinish(current);
-        return inS.setResult(inS.writeEmptyParams());
+        boolean ret = obj.isFinish(current);
+        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
+        ostr.writeBool(ret);
+        inS.endWriteParams(ostr);
+        return inS.setResult(ostr);
     }
 
     /** @hidden */

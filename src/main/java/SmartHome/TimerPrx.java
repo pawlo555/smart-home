@@ -208,22 +208,22 @@ public interface TimerPrx extends com.zeroc.Ice.ObjectPrx
         InvalidTime.class
     };
 
-    default void isFinish()
+    default boolean isFinish()
     {
-        isFinish(com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        return isFinish(com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default void isFinish(java.util.Map<String, String> context)
+    default boolean isFinish(java.util.Map<String, String> context)
     {
-        _iceI_isFinishAsync(context, true).waitForResponse();
+        return _iceI_isFinishAsync(context, true).waitForResponse();
     }
 
-    default java.util.concurrent.CompletableFuture<Void> isFinishAsync()
+    default java.util.concurrent.CompletableFuture<java.lang.Boolean> isFinishAsync()
     {
         return _iceI_isFinishAsync(com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<Void> isFinishAsync(java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<java.lang.Boolean> isFinishAsync(java.util.Map<String, String> context)
     {
         return _iceI_isFinishAsync(context, false);
     }
@@ -234,10 +234,14 @@ public interface TimerPrx extends com.zeroc.Ice.ObjectPrx
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_isFinishAsync(java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> _iceI_isFinishAsync(java.util.Map<String, String> context, boolean sync)
     {
-        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "isFinish", com.zeroc.Ice.OperationMode.Idempotent, sync, null);
-        f.invoke(false, context, null, null, null);
+        com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "isFinish", com.zeroc.Ice.OperationMode.Idempotent, sync, null);
+        f.invoke(true, context, null, null, istr -> {
+                     boolean ret;
+                     ret = istr.readBool();
+                     return ret;
+                 });
         return f;
     }
 

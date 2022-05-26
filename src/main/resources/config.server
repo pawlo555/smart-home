@@ -4,6 +4,7 @@
 # adapter.
 #
 Adapter.Endpoints=tcp -h 127.0.0.2 -p 10000 -z -t 10000 : udp -h 127.0.0.2 -p 10000 -z
+Adapter1.Endpoints=tcp -h 127.0.0.2 -p 10010 -z -t 10000 : udp -h 127.0.0.2 -p 10010 -z
 
 Adapter.ThreadPool.Size=10
 
