@@ -12,22 +12,24 @@ import java.util.List;
 public class Server {
     private Communicator communicator = null;
     private final String[] args;
-    private final List<Pair<MyDevice, Identity>> servantsIdentitiesPair;
+    private final List<Pair<MyDevice, Identity>> servantIdentityPairs;
 
-    public Server(String[] args, List<Pair<MyDevice, Identity>> servantsIdentitiesPair) {
+    public Server(String[] args, List<Pair<MyDevice, Identity>> servantIdentityPairs) {
         this.args = args;
-        this.servantsIdentitiesPair = servantsIdentitiesPair;
+        this.servantIdentityPairs = servantIdentityPairs;
     }
 
     public void start() {
         communicator = Util.initialize(args);
         ObjectAdapter adapter = communicator.createObjectAdapter("Adapter");
+        addDevices(adapter);
         adapter.activate();
     }
 
     public void addDevices(ObjectAdapter adapter) {
-        for (Pair<MyDevice, Identity> pair: servantsIdentitiesPair) {
+        for (Pair<MyDevice, Identity> pair: servantIdentityPairs) {
             adapter.add(pair.getKey(), pair.getValue());
+            System.out.println(adapter.find(pair.getValue()));
         }
     }
 
@@ -35,11 +37,5 @@ public class Server {
         if (communicator != null) {
             communicator.destroy();
         }
-    }
-
-    public static void main(String[] args)
-    {
-        //Server app = new Server();
-        //app.t1(args);
     }
 }
