@@ -113,6 +113,14 @@ public class Client
                 OvenPrx ovenPrx = OvenPrx.checkedCast(proxy);
                 return ovenPrx.isFinish();
             }
+            case GET_HUMIDITY -> {
+                MultifunctionalOvenPrx multifunctionalOvenPrx = MultifunctionalOvenPrx.checkedCast(proxy);
+                return multifunctionalOvenPrx.getHumidityInsideOven();
+            }
+            case GET_OVEN_TEMPERATURE -> {
+                MultifunctionalOvenPrx multifunctionalOvenPrx = MultifunctionalOvenPrx.checkedCast(proxy);
+                return multifunctionalOvenPrx.getTemperatureInsideOven();
+            }
         }
         return null;
     }
