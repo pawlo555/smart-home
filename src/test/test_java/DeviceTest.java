@@ -1,3 +1,5 @@
+package test_java;
+
 import com.zeroc.Ice.Identity;
 import javafx.util.Pair;
 import org.junit.Test;
@@ -12,10 +14,10 @@ import java.util.List;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class LightBulbTest {
+public class DeviceTest {
 
     @Test()
-    public void lightOffBulbTest() {
+    public void testDeviceFirstTurnOffTest() {
         String[] serverArgs = new String[]{"--Ice.Config=config.server"};
         String[] customerArgs = new String[]{"--Ice.Config=config.client"};
         List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();
@@ -25,8 +27,7 @@ public class LightBulbTest {
             server.start();
             client.start();
 
-            client.command("LightBulb1", Commands.TURN_LIGHT_ON);
-            assertFalse((boolean) client.command("LightBulb1", Commands.IS_LIGHT_ON));
+            assertFalse((Boolean) client.command("Device1", Commands.CHECK_POWER));
         }
         finally{
             client.destroyClient();
@@ -35,7 +36,7 @@ public class LightBulbTest {
     }
 
     @Test()
-    public void lightOnBulbTest() {
+    public void deviceAfterTurnOnIsOnTest() {
         String[] serverArgs = new String[]{"--Ice.Config=config.server"};
         String[] customerArgs = new String[]{"--Ice.Config=config.client"};
         List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();
@@ -45,18 +46,18 @@ public class LightBulbTest {
             server.start();
             client.start();
 
-            client.command("LightBulb1", Commands.TURN_ON);
-            client.command("LightBulb1", Commands.TURN_LIGHT_ON);
-            assertTrue((boolean) client.command("LightBulb1", Commands.IS_LIGHT_ON));
+            client.command("Device1", Commands.TURN_ON);
+            assertTrue((Boolean) client.command("Device1", Commands.CHECK_POWER));
         }
         finally {
             client.destroyClient();
             server.destroyServer();
         }
+
     }
 
     @Test()
-    public void switchingLightBulbTest() {
+    public void switchingDeviceTest() {
         String[] serverArgs = new String[]{"--Ice.Config=config.server"};
         String[] customerArgs = new String[]{"--Ice.Config=config.client"};
         List<Pair<MyDevice, Identity>> pairList = PairsGenerator.getListOfPair();
@@ -66,15 +67,15 @@ public class LightBulbTest {
             server.start();
             client.start();
 
-            client.command("LightBulb1", Commands.TURN_ON);
-            client.command("LightBulb1", Commands.TURN_LIGHT_ON);
-            assertTrue((boolean) client.command("LightBulb1", Commands.IS_LIGHT_ON));
-            client.command("LightBulb1", Commands.TURN_LIGHT_OFF);
-            assertFalse((boolean) client.command("LightBulb1", Commands.IS_LIGHT_ON));
+            client.command("Device1", Commands.TURN_ON);
+            client.command("Device1", Commands.TURN_OFF);
+            client.command("Device1", Commands.TURN_OFF);
+            assertFalse((Boolean) client.command("Device1", Commands.CHECK_POWER));
         }
         finally {
             client.destroyClient();
             server.destroyServer();
         }
     }
+
 }

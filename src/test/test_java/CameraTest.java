@@ -1,3 +1,5 @@
+package test_java;
+
 import SmartHome.InvalidPhotoSize;
 import SmartHome.PhotoSize;
 import com.zeroc.Ice.Identity;

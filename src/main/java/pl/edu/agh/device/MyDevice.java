@@ -9,7 +9,6 @@ public class MyDevice implements Device {
 
     @Override
     public boolean isTurnedOn(Current current) {
-        System.out.println(state.toString());
         return state == PowerState.ON;
     }
 

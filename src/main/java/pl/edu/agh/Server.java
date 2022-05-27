@@ -13,15 +13,23 @@ public class Server {
     private Communicator communicator = null;
     private final String[] args;
     private final List<Pair<MyDevice, Identity>> servantIdentityPairs;
+    private final String adapterName;
 
     public Server(String[] args, List<Pair<MyDevice, Identity>> servantIdentityPairs) {
         this.args = args;
         this.servantIdentityPairs = servantIdentityPairs;
+        adapterName = "Adapter";
+    }
+
+    public Server(String[] args, List<Pair<MyDevice, Identity>> servantIdentityPairs, String adapterName) {
+        this.args = args;
+        this.servantIdentityPairs = servantIdentityPairs;
+        this.adapterName = adapterName;
     }
 
     public void start() {
         communicator = Util.initialize(args);
-        ObjectAdapter adapter = communicator.createObjectAdapter("Adapter");
+        ObjectAdapter adapter = communicator.createObjectAdapter(adapterName);
         addDevices(adapter);
         adapter.activate();
     }

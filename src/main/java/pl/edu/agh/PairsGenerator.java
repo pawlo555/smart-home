@@ -19,4 +19,22 @@ public class PairsGenerator {
                 new Pair<>(new MyMultifunctionalOven(), new Identity("MultifunctionalOven1", "multifunctionalOvens"))
         );
     }
+
+    public static List<Pair<MyDevice, Identity>> getListOfPairTwoServersFirstServer() {
+        return Arrays.asList(
+                new Pair<>(new MyDevice(), new Identity("Device1", "devices")),
+                new Pair<>(new MyCamera(), new Identity("Camera1", "cameras")),
+                new Pair<>(new MyOven(), new Identity("Oven1", "ovens")),
+                new Pair<>(new MyMultifunctionalOven(), new Identity("MultifunctionalOven1", "multifunctionalOvens"))
+        );
+    }
+
+    public static List<Pair<MyDevice, Identity>> getListOfPairTwoServersSecondServer() {
+        return Arrays.asList(
+                new Pair<>(new MyLightBulb(), new Identity("LightBulb1", "lightbulbs")),
+                new Pair<>(new MyLightBulb(), new Identity("LightBulb2", "lightbulbs")),
+                new Pair<>(new MyLightBulb(), new Identity("LightBulb3", "lightbulbs")),
+                new Pair<>(new MyLightBulb(), new Identity("LightBulb4", "lightbulbs"))
+       );
+    }
 }

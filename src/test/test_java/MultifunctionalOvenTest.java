@@ -1,3 +1,5 @@
+package test_java;
+
 import com.zeroc.Ice.Identity;
 import javafx.util.Pair;
 import org.junit.Test;
