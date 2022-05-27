@@ -115,7 +115,6 @@ public class MyOven extends MyDevice implements Oven {
     }
 
     private boolean timeIsValid(Time time) {
-        System.out.println(time.minutes);
         return time.seconds >= 0 && time.minutes >= 0 && time.hours >=0 && time.seconds < 60 && time.minutes < 60;
     }
 

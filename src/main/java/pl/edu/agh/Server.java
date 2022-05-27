@@ -34,6 +34,11 @@ public class Server {
         adapter.activate();
     }
 
+    public void work() {
+        System.out.println("Waiting for commands...");
+        communicator.waitForShutdown();
+    }
+
     public void addDevices(ObjectAdapter adapter) {
         for (Pair<MyDevice, Identity> pair: servantIdentityPairs) {
             adapter.add(pair.getKey(), pair.getValue());
