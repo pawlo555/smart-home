@@ -51,9 +51,7 @@ class ClientConnection {
     }
 
     Object command(String name, Commands command) {
-        println(identitiesMap)
         DevicePrx proxy = identitiesMap.get(name)
-        println proxy
         switch(command) {
             case Commands.TURN_ON:
                 proxy.setTo(PowerState.ON)

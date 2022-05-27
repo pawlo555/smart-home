@@ -1,8 +1,6 @@
 package client
 
 import pl.edu.agh.PairsGenerator
-import pl.edu.agh.Server
-import client.GroovyClient
 
 class Main {
 

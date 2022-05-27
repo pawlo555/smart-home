@@ -24,16 +24,39 @@ class GroovyClient {
         println "<device name> <command name> <param>"
         Scanner scanner = new Scanner(System.in)
         do {
-            String line = scanner.nextLine()
-            def list = CommandsParser.parse(line)
-            performOperation(list)
+            performRequest(scanner)
+
         }
         while (true)
     }
 
+    def performRequest(Scanner scanner) {
+        try {
+            String line = scanner.nextLine()
+            def list = CommandsParser.parse(line)
+            def serverOutput = performOperation(list)
+            if (serverOutput != null)
+                println serverOutput
+            else
+                println "Command processed"
+        }
+        catch (IllegalArgumentException exception) {
+            println exception.message
+        }
+        catch (NullPointerException ignored) {
+            println "Cannot perform this operation on this device"
+        }
+    }
+
     def performOperation(List args) {
         if (args.size() == 1) {
-            performSpecialOperation(args[0] as String)
+            return performSpecialOperation(args[0] as String)
+        }
+        else if (args.size() == 2) {
+            return connection.command(args[0] as String, args[1] as Commands)
+        }
+        else if (args.size() == 3) {
+            return connection.command(args[0] as String, args[1] as Commands, args[2])
         }
     }
 

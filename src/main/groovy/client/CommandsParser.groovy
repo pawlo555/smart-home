@@ -79,7 +79,7 @@ class CommandsParser {
             return new Time(seconds, minutes, hours)
         }
         catch (Exception ignored) {
-            throw new IllegalArgumentException("Invalid time: ${timeName} - format is: hours:minutes:seconds}")
+            throw new IllegalArgumentException("Invalid time: ${timeName} - format is: hours:minutes:seconds")
         }
     }
 }
