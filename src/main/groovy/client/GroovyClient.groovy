@@ -25,7 +25,6 @@ class GroovyClient {
         Scanner scanner = new Scanner(System.in)
         do {
             performRequest(scanner)
-
         }
         while (true)
     }

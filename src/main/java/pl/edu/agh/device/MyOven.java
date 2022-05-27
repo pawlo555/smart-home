@@ -106,7 +106,7 @@ public class MyOven extends MyDevice implements Oven {
     @Override
     public void setTime(Time time, Current current) throws InvalidTime {
         if(!timeIsValid(time)) {
-            throw new InvalidTime();
+            throw new InvalidTime(time);
         }
         if (isTurnedOn(current)) {
             updateTime();

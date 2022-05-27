@@ -2,7 +2,7 @@ package client
 
 import pl.edu.agh.PairsGenerator
 
-class Main {
+class SingleServerClientMain {
 
     static void main(String[] args) {
         def clientArgs = ["--Ice.Config=config.client"]
